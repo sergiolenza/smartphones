@@ -17,6 +17,7 @@ const increaseShoppingCart = (shoppingCart, product) => {
 };
 
 const addProductToShoppingCart = (product, shoppingCart) => {
+  // eslint-disable-next-line no-nested-ternary
   return shoppingCart
     ? hasProduct(shoppingCart, product)
       ? shoppingCart
@@ -24,4 +25,5 @@ const addProductToShoppingCart = (product, shoppingCart) => {
     : createShoppingCart(product);
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export { addProductToShoppingCart };

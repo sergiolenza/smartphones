@@ -7,7 +7,9 @@ const get = async (url) => {
     method: 'GET',
     headers,
   });
-  return await response.json();
+  const result = await response.json();
+
+  return result;
 };
 
 const post = async (url, body) => {
@@ -16,10 +18,14 @@ const post = async (url, body) => {
     headers,
     body,
   });
-  return await response.json();
+  const result = await response.json();
+
+  return result;
 };
 
-export const http = {
+const http = {
   get,
   post,
 };
+
+export default http;

@@ -1,6 +1,6 @@
-import { http } from '../../infrastructure/http/http';
+import http from '../http/http';
 
-export const productRepository = {
+const productRepository = {
   getProducts: async () => {
     try {
       const products = await http.get('https://front-test-api.herokuapp.com/api/product');
@@ -18,3 +18,5 @@ export const productRepository = {
     }
   },
 };
+
+export default productRepository;

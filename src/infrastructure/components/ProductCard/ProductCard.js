@@ -11,7 +11,9 @@ const ProductCard = ({ product, onAddToCart }) => {
     <Link to={`/${product.id}`}>
       <StyledProductCard>
         {product.model}
-        <button onClick={() => onAddToCart(product)}>Add to cart</button>
+        <button type="button" onClick={() => onAddToCart(product)}>
+          Add to cart
+        </button>
       </StyledProductCard>
     </Link>
   );

@@ -1,8 +1,9 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
     }
   },
   "env": {
@@ -10,18 +11,16 @@
     "browser": true,
     "node": true
   },
-
-  "plugins": ["prettier", "react-hooks"],
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": 0,
     "react/destructuring-assignment": 0,
     "react/sort-comp": 0,
     "react/jsx-filename-extension": 0,
     "react/prefer-stateless-function": 0,
+    "react/function-component-definition": 0,
     "react/jsx-curly-brace-presence": 0,
-    "react/prop-types": 1,
+    "react/prop-types": 0,
     "react/forbid-prop-types": 1,
     "react/require-default-props": 1,
     "react/no-unescaped-entities": [
@@ -30,7 +29,6 @@
         "forbid": [">", "}", "\""]
       }
     ],
-
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "jsx-a11y/anchor-is-valid": 0,

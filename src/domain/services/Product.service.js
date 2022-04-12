@@ -1,6 +1,6 @@
 import { productRepository } from '../../infrastructure/repositories/product.repository';
 
-export const productService = {
+const productService = {
   getProducts: () => {
     return productRepository.getProducts();
   },
@@ -8,3 +8,5 @@ export const productService = {
     return productRepository.getProductById(id);
   },
 };
+
+export default productService;
