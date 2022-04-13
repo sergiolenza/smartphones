@@ -1,4 +1,4 @@
-import { productRepository } from '../../infrastructure/repositories/product.repository';
+import productRepository from '../../infrastructure/repositories/product.repository';
 
 const productService = {
   getProducts: () => {

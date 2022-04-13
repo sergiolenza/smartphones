@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
+import styled from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import ProductsList from './infrastructure/components/ProductsList/ProductsList';
-import ProductDetails from './infrastructure/components/ProductDetails/ProductDetails';
-import { addProductToShoppingCart } from './domain/services/ShoppingCart.service';
+import Header from './infrastructure/ui/components/Header/Header';
+import shoppingCartService from './domain/services/ShoppingCart.service';
+
+const ProductsList = lazy(() => import('./infrastructure/ui/components/ProductsList/ProductsList'));
+const ProductDetails = lazy(() =>
+  import('./infrastructure/ui/components/ProductDetails/ProductDetails')
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,22 +19,42 @@ const queryClient = new QueryClient({
   },
 });
 
+const Container = styled.div`
+  flex: 1;
+  overflow: auto;
+  padding: 2rem;
+`;
+
 const App = () => {
-  const [shoppingCart, setShoppingCart] = useState(null);
+  const [shoppingCart, setShoppingCart] = useState({ items: [] });
 
   const handleAddToShoppingCart = (product) => {
-    setShoppingCart(addProductToShoppingCart(product, shoppingCart));
+    const newShoppingCart = shoppingCartService.addProductToShoppingCart(product, shoppingCart);
+    setShoppingCart(newShoppingCart);
   };
 
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <div className="App">
-          {/* <Header shoppingCartItems={shoppingCart.items.length} /> */}
-
+        <Header shoppingCartItems={shoppingCart.items.length} />
+        <Container>
           <Routes>
-            <Route path="/" element={<ProductsList onSelectProduct={handleAddToShoppingCart} />} />
-            <Route path=":productId" element={<ProductDetails />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<>...</>}>
+                  <ProductsList />
+                </Suspense>
+              }
+            />
+            <Route
+              path=":productId"
+              element={
+                <Suspense fallback={<>...</>}>
+                  <ProductDetails onAddToCart={handleAddToShoppingCart} />
+                </Suspense>
+              }
+            />
           </Routes>
 
           {/* <Routes>
@@ -54,7 +79,7 @@ const App = () => {
               <Route path=":productId" element={<ProductDetails />} />
             </Route>
           </Routes> */}
-        </div>
+        </Container>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
