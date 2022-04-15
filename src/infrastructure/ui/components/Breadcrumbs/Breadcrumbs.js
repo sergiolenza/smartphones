@@ -3,32 +3,32 @@ import { Link } from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import styled from 'styled-components';
 
-const StyledBreadcrumbs = styled.div`
+const StyledBreadcrumbs = styled.nav`
   display: flex;
   margin-top: 1rem;
-`;
-const StyledBreadcrumb = styled.div`
-  align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-  color: darkgray;
-`;
-const StyledBreadcrumbLink = styled.a`
-  color: darkgray;
+  .breadcrumbs--unit {
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    color: darkgray;
+  }
+  .breadcrumbs--link {
+    color: darkgray;
+  }
 `;
 
 const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs();
 
   return (
-    <StyledBreadcrumbs>
+    <StyledBreadcrumbs role="navigation" aria-label="breadcrumbs">
       {breadcrumbs.map(({ breadcrumb, match }, index) => (
-        <StyledBreadcrumb key={breadcrumb.key}>
-          <StyledBreadcrumbLink as={Link} to={match.pathname || ''}>
+        <div className="breadcrumbs--unit" key={breadcrumb.key}>
+          <Link className="breadcrumbs--link" to={match.pathname || ''}>
             {breadcrumb}
-          </StyledBreadcrumbLink>
+          </Link>
           {index < breadcrumbs.length - 1 && '/'}
-        </StyledBreadcrumb>
+        </div>
       ))}
     </StyledBreadcrumbs>
   );

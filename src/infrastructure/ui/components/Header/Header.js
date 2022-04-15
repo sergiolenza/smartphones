@@ -11,30 +11,28 @@ const Header = styled.header`
   padding: 0 2rem;
   background-color: #132337;
   color: white;
-`;
-
-const HeaderTitleSection = styled.section`
-  display: flex;
-  flex-direction: column;
-`;
-
-const HeaderTitle = styled.a`
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: inherit;
-  color: inherit;
+  .header--title-and-breadcrumbs {
+    display: flex;
+    flex-direction: column;
+  }
+  .header--title {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: inherit;
+    color: inherit;
+  }
 `;
 
 const AppHeader = ({ shoppingCartItems }) => {
   return (
-    <Header>
-      <HeaderTitleSection>
-        <HeaderTitle as={Link} to="/">
+    <Header role="banner" aria-label="app-header">
+      <div className="header--title-and-breadcrumbs">
+        <Link to="/" className="header--title">
           Smartphones
-        </HeaderTitle>
+        </Link>
         <Breadcrumbs />
-      </HeaderTitleSection>
-      <div>{shoppingCartItems}</div>
+      </div>
+      {shoppingCartItems !== 0 ? <div>Cart: {shoppingCartItems} item/s</div> : null}
     </Header>
   );
 };

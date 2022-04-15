@@ -144,3 +144,6 @@ table {
 /* a {
   all: unset;
 } */
+* {
+  box-sizing: border-box;
+}

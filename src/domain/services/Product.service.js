@@ -4,8 +4,8 @@ const productService = {
   getProducts: () => {
     return productRepository.getProducts();
   },
-  getProductById: (id) => {
-    return productRepository.getProductById(id);
+  getProductById: (productId) => {
+    return productRepository.getProductById(productId);
   },
 };
 

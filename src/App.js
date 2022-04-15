@@ -4,11 +4,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Header from './infrastructure/ui/components/Header/Header';
+import LoadingPlaceholder from './infrastructure/ui/components/LoadingPlaceholder/LoadingPlaceholder';
 import shoppingCartService from './domain/services/ShoppingCart.service';
 
-const ProductsList = lazy(() => import('./infrastructure/ui/components/ProductsList/ProductsList'));
+const ProductsList = lazy(() => import('./infrastructure/ui/views/ProductsList/ProductsList'));
 const ProductDetails = lazy(() =>
-  import('./infrastructure/ui/components/ProductDetails/ProductDetails')
+  import('./infrastructure/ui/views/ProductDetails/ProductDetails')
 );
 
 const queryClient = new QueryClient({
@@ -42,7 +43,7 @@ const App = () => {
             <Route
               path="/"
               element={
-                <Suspense fallback={<>...</>}>
+                <Suspense fallback={<LoadingPlaceholder />}>
                   <ProductsList />
                 </Suspense>
               }
@@ -50,35 +51,12 @@ const App = () => {
             <Route
               path=":productId"
               element={
-                <Suspense fallback={<>...</>}>
+                <Suspense fallback={<LoadingPlaceholder />}>
                   <ProductDetails onAddToCart={handleAddToShoppingCart} />
                 </Suspense>
               }
             />
           </Routes>
-
-          {/* <Routes>
-            <Route
-              index
-              element={
-                <>
-                  <ProductsList onSelectProduct={handleAddToShoppingCart} />
-                  {shoppingCart && <p>Items on shopping cart: {shoppingCart.items.length}</p>}
-                </>
-              }
-            />
-            <Route
-              path="products"
-              element={
-                <>
-                  <ProductsList onSelectProduct={handleAddToShoppingCart} />
-                  {shoppingCart && <p>Items on shopping cart: {shoppingCart.items.length}</p>}
-                </>
-              }
-            >
-              <Route path=":productId" element={<ProductDetails />} />
-            </Route>
-          </Routes> */}
         </Container>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
