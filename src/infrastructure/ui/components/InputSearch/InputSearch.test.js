@@ -15,7 +15,8 @@ describe('InputSearch component', () => {
   it('does call the onClick function', async () => {
     renderInputSearch();
     const inputSearch = await screen.findByPlaceholderText('Search…');
-    userEvent.type(inputSearch, 'alcatel');
+    await userEvent.type(inputSearch, 'alcatel');
+    expect(inputSearch).toHaveValue('alcatel');
     expect(mockOnChangeFn).toHaveBeenCalled();
   });
 });

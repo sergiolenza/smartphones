@@ -17,7 +17,7 @@ describe('Button component', () => {
       </Button>
     );
     const button = await screen.findByText('Add to cart');
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(mockClickFn).toHaveBeenCalled();
   });
 });
