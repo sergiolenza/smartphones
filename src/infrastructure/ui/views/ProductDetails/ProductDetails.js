@@ -7,7 +7,7 @@ import Button from '../../components/Button/Button';
 import Select from '../../components/Select/Select';
 import LoadingPlaceholder from '../../components/LoadingPlaceholder/LoadingPlaceholder';
 
-const ProductDetail = styled.div`
+const ProductDetail = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(max(180px, 280px), 1fr));
   max-width: 800px;
@@ -77,7 +77,7 @@ const ProductDetails = ({ onAddToCart }) => {
   const isString = (value) => typeof value === 'string' || value instanceof String;
 
   return (
-    <ProductDetail>
+    <ProductDetail role="article" aria-label="product-details">
       <Image src={imgUrl} alt={`${brand} ${model}`} lazyLoading />
       <div>
         <div>
