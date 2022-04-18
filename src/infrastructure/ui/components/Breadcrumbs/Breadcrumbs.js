@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import styled from 'styled-components';
+import DynamicProductBreadcrumb from './DynamicProductBreadcrumb';
 
 const StyledBreadcrumbs = styled.nav`
   display: flex;
@@ -17,8 +18,13 @@ const StyledBreadcrumbs = styled.nav`
   }
 `;
 
+const routes = [
+  { path: '/', breadcrumb: 'Home' },
+  { path: ':productId', breadcrumb: DynamicProductBreadcrumb },
+];
+
 const Breadcrumbs = () => {
-  const breadcrumbs = useBreadcrumbs();
+  const breadcrumbs = useBreadcrumbs(routes);
 
   return (
     <StyledBreadcrumbs role="navigation" aria-label="breadcrumbs">
