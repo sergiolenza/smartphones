@@ -7,6 +7,7 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import InputSearch from '../../components/InputSearch/InputSearch';
 import EmptyPlaceholder from '../../components/EmptyPlaceholder/EmptyPlaceholder';
 import LoadingPlaceholder from '../../components/LoadingPlaceholder/LoadingPlaceholder';
+import ErrorPlaceholder from '../../components/ErrorPlaceholder/ErrorPlaceholder';
 
 const ProductsListContainer = styled.section`
   --grid-layout-gap: 2rem;
@@ -57,8 +58,12 @@ const ProductsList = () => {
     return <LoadingPlaceholder />;
   }
 
+  if (status === 'error') {
+    return <ErrorPlaceholder text="We can't seem to find the product list you are looking for" />;
+  }
+
   return (
-    <ProductsListContainer>
+    <ProductsListContainer role="article" aria-label="products-list">
       <InputSearch onChange={debouncedChangeHandler} />
       {filteredProducts.length === 0 ? (
         <EmptyPlaceholder text="No products to display" />

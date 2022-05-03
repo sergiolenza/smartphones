@@ -6,6 +6,7 @@ import Image from '../../components/Image/Image';
 import Button from '../../components/Button/Button';
 import Select from '../../components/Select/Select';
 import LoadingPlaceholder from '../../components/LoadingPlaceholder/LoadingPlaceholder';
+import ErrorPlaceholder from '../../components/ErrorPlaceholder/ErrorPlaceholder';
 
 const ProductDetail = styled.section`
   display: grid;
@@ -53,6 +54,10 @@ const ProductDetails = ({ onAddToCart }) => {
 
   if (status === 'loading') {
     return <LoadingPlaceholder />;
+  }
+
+  if (status === 'error') {
+    return <ErrorPlaceholder text="We can't seem to find the product you are looking for" />;
   }
 
   const {
