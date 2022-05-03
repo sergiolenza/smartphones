@@ -28,6 +28,7 @@ const ProductsListContainer = styled.section`
     );
     grid-gap: var(--grid-layout-gap);
     grid-row-gap: 2rem;
+    padding-bottom: 4rem;
   }
   .products-list--list--item {
     text-decoration: none;
