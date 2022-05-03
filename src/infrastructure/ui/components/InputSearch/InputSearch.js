@@ -25,7 +25,7 @@ const Input = styled.input`
 
 const InputSearch = ({ onChange }) => (
   <SearchBar>
-    <Input type="search" placeholder="Search…" onChange={onChange} autoFocus />
+    <Input role="searchbox" type="search" placeholder="Search…" onChange={onChange} autoFocus />
   </SearchBar>
 );
 
