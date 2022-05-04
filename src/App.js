@@ -7,9 +7,15 @@ import Header from './infrastructure/ui/components/Header/Header';
 import LoadingPlaceholder from './infrastructure/ui/components/LoadingPlaceholder/LoadingPlaceholder';
 import shoppingCartService from './domain/services/ShoppingCart.service';
 
-const ProductsList = lazy(() => import('./infrastructure/ui/views/ProductsList/ProductsList'));
+const ProductsList = lazy(() =>
+  import(
+    /* webpackChunkName: "ProductsList" */ './infrastructure/ui/views/ProductsList/ProductsList'
+  )
+);
 const ProductDetails = lazy(() =>
-  import('./infrastructure/ui/views/ProductDetails/ProductDetails')
+  import(
+    /* webpackChunkName: "ProductDetails" */ './infrastructure/ui/views/ProductDetails/ProductDetails'
+  )
 );
 
 const queryClient = new QueryClient({
