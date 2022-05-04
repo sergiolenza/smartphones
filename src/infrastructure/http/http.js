@@ -7,9 +7,10 @@ const get = async (url) => {
     method: 'GET',
     headers,
   });
-  const result = await response.json();
-
-  return result;
+  if (!response.ok) {
+    throw response;
+  }
+  return response.json();
 };
 
 const post = async (url, body) => {
@@ -18,9 +19,11 @@ const post = async (url, body) => {
     headers,
     body,
   });
-  const result = await response.json();
+  if (!response.ok) {
+    throw response;
+  }
 
-  return result;
+  return response.json();
 };
 
 const http = {

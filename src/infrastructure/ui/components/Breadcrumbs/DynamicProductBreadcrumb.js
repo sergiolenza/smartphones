@@ -7,6 +7,9 @@ const DynamicProductBreadcrumb = ({ match }) => {
   if (status === 'loading') {
     return '...';
   }
+  if (!product) {
+    return null;
+  }
 
   return <span>{product.model}</span>;
 };
