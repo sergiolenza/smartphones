@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter as Router } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
 
 const mockProduct = {
@@ -72,7 +73,12 @@ jest.mock('../../hooks/useProduct', () => ({
 
 const mockOnAddToCart = jest.fn();
 
-const renderProductDetails = () => render(<ProductDetails onAddToCart={mockOnAddToCart} />);
+const renderProductDetails = () =>
+  render(
+    <Router>
+      <ProductDetails onAddToCart={mockOnAddToCart} />
+    </Router>
+  );
 
 describe('ProductDetail view', () => {
   it('does render the ProductDetails', async () => {

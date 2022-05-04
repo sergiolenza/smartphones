@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useProduct from '../../hooks/useProduct';
 import Image from '../../components/Image/Image';
@@ -8,6 +8,13 @@ import Select from '../../components/Select/Select';
 import LoadingPlaceholder from '../../components/LoadingPlaceholder/LoadingPlaceholder';
 import ErrorPlaceholder from '../../components/ErrorPlaceholder/ErrorPlaceholder';
 
+const GoBack = styled.div`
+  margin-bottom: 2rem;
+  .goback--link {
+    color: darkgray;
+    text-decoration: none;
+  }
+`;
 const ProductDetail = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(max(180px, 280px), 1fr));
@@ -82,82 +89,89 @@ const ProductDetails = ({ onAddToCart }) => {
   const isString = (value) => typeof value === 'string' || value instanceof String;
 
   return (
-    <ProductDetail role="article" aria-label="product-details">
-      <Image src={imgUrl} alt={`${brand} ${model}`} lazyLoading />
-      <div>
+    <>
+      <GoBack>
+        <Link className="goback--link" to="/">
+          ← Products list
+        </Link>
+      </GoBack>
+      <ProductDetail role="article" aria-label="product-details">
+        <Image src={imgUrl} alt={`${brand} ${model}`} lazyLoading />
         <div>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Brand: </span>
-            {brand}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Model: </span>
-            {model}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Price: </span>
-            {price} €
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">CPU: </span>
-            {cpu}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">RAM: </span>
-            {ram}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Operative system: </span>
-            {os}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Display resolution: </span>
-            {displayResolution}
-          </p>
-          <p className="product-detail--paragraph">
-            <span className="product-detail--key">Battery: </span>
-            {battery}
-          </p>
-          {primaryCamera ? (
+          <div>
             <p className="product-detail--paragraph">
-              <span className="product-detail--key">Back camera: </span>
-              {isString(primaryCamera) ? primaryCamera : primaryCamera.join(', ')}
+              <span className="product-detail--key">Brand: </span>
+              {brand}
             </p>
-          ) : null}
-          {secondaryCmera ? (
             <p className="product-detail--paragraph">
-              <span className="product-detail--key">Front camera: </span>
-              {isString(secondaryCmera) ? secondaryCmera : secondaryCmera.join(', ')}
+              <span className="product-detail--key">Model: </span>
+              {model}
             </p>
-          ) : null}
-          {dimentions !== '-' ? (
             <p className="product-detail--paragraph">
-              <span className="product-detail--key">Dimensions: </span>
-              {dimentions}
+              <span className="product-detail--key">Price: </span>
+              {price} €
             </p>
-          ) : null}
-          {weight ? (
             <p className="product-detail--paragraph">
-              <span className="product-detail--key">Weight: </span>
-              {weight} gr
+              <span className="product-detail--key">CPU: </span>
+              {cpu}
             </p>
-          ) : null}
-        </div>
+            <p className="product-detail--paragraph">
+              <span className="product-detail--key">RAM: </span>
+              {ram}
+            </p>
+            <p className="product-detail--paragraph">
+              <span className="product-detail--key">Operative system: </span>
+              {os}
+            </p>
+            <p className="product-detail--paragraph">
+              <span className="product-detail--key">Display resolution: </span>
+              {displayResolution}
+            </p>
+            <p className="product-detail--paragraph">
+              <span className="product-detail--key">Battery: </span>
+              {battery}
+            </p>
+            {primaryCamera ? (
+              <p className="product-detail--paragraph">
+                <span className="product-detail--key">Back camera: </span>
+                {isString(primaryCamera) ? primaryCamera : primaryCamera.join(', ')}
+              </p>
+            ) : null}
+            {secondaryCmera ? (
+              <p className="product-detail--paragraph">
+                <span className="product-detail--key">Front camera: </span>
+                {isString(secondaryCmera) ? secondaryCmera : secondaryCmera.join(', ')}
+              </p>
+            ) : null}
+            {dimentions !== '-' ? (
+              <p className="product-detail--paragraph">
+                <span className="product-detail--key">Dimensions: </span>
+                {dimentions}
+              </p>
+            ) : null}
+            {weight ? (
+              <p className="product-detail--paragraph">
+                <span className="product-detail--key">Weight: </span>
+                {weight} gr
+              </p>
+            ) : null}
+          </div>
 
-        <form className="product-detail--form">
-          <Select name="colors" options={colors} value={colorCode} onChange={setColorCode} />
-          <Select
-            name="storages"
-            options={storages}
-            value={storageCode}
-            onChange={setStorageCode}
-          />
-          <Button type="button" onClick={onClickAddToCart}>
-            Add to cart
-          </Button>
-        </form>
-      </div>
-    </ProductDetail>
+          <form className="product-detail--form">
+            <Select name="colors" options={colors} value={colorCode} onChange={setColorCode} />
+            <Select
+              name="storages"
+              options={storages}
+              value={storageCode}
+              onChange={setStorageCode}
+            />
+            <Button type="button" onClick={onClickAddToCart}>
+              Add to cart
+            </Button>
+          </form>
+        </div>
+      </ProductDetail>
+    </>
   );
 };
 
