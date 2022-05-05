@@ -27,7 +27,7 @@ const Card = styled.article`
   }
   .card--body-brand {
     text-transform: uppercase;
-    color: darkgrey;
+    color: #797979;
   }
   .card--body-price {
     font-weight: bold;

@@ -11,7 +11,7 @@ import ErrorPlaceholder from '../../components/ErrorPlaceholder/ErrorPlaceholder
 const GoBack = styled.div`
   margin-bottom: 2rem;
   .goback--link {
-    color: darkgray;
+    color: #797979;
     text-decoration: none;
   }
 `;

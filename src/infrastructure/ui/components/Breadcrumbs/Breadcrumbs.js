@@ -11,10 +11,10 @@ const StyledBreadcrumbs = styled.nav`
     align-items: center;
     white-space: nowrap;
     overflow: hidden;
-    color: darkgray;
+    color: #ccc;
   }
   .breadcrumbs--link {
-    color: darkgray;
+    color: #ccc;
   }
 `;
 
