@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build --stats",
-    "analyze": "npx webpack-bundle-analyzer ./build/bundle-stats.json",
+    "analyze": "webpack-bundle-analyzer ./build/bundle-stats.json",
     "test": "react-scripts test",
     "lint": "eslint",
     "eject": "react-scripts eject",
