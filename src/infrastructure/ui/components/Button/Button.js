@@ -11,15 +11,17 @@ const StyledButton = styled.button`
   font-weight: 800;
   font-size: 16px;
   height: 40px;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   :hover {
-    background-color: #132337;
-    color: #fff;
+    background-color: ${({ disabled }) => (disabled ? '#fff' : '#132337')};
+    color: ${({ disabled }) => (disabled ? '#132337' : '#fff')};
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   }
 `;
 
-const Button = ({ type, onClick, children }) => {
+const Button = ({ type, onClick, disabled, children }) => {
   return (
-    <StyledButton type={type} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick} disabled={disabled}>
       {children}
     </StyledButton>
   );

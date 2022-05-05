@@ -8,6 +8,7 @@ const Card = styled.article`
   overflow: hidden;
   background-color: white;
   cursor: pointer;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   .card--header {
     display: flex;
     align-items: center;
@@ -38,14 +39,14 @@ const Card = styled.article`
 const ProductCard = ({ product }) => {
   const { imgUrl, brand, model, price } = product;
   return (
-    <Card role="article" aria-label="product-card">
+    <Card role="article" aria-label="product-card" disabled={!product.price}>
       <div className="card--header">
         <Image src={imgUrl} alt={`${brand} ${model}`} lazyLoading />
       </div>
       <div className="card--body">
         <div className="card--body-model">{model}</div>
         <div className="card--body-brand">{brand}</div>
-        <div className="card--body-price">{price ? `${price} €` : 'unavailable'}</div>
+        <div className="card--body-price">{price ? `${price} €` : 'Not available'}</div>
       </div>
     </Card>
   );

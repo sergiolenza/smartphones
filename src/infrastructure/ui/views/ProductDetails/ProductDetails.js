@@ -109,7 +109,7 @@ const ProductDetails = ({ onAddToCart }) => {
             </p>
             <p className="product-detail--paragraph">
               <span className="product-detail--key">Price: </span>
-              {price} €
+              {price ? `${price} €` : 'Not available'}
             </p>
             <p className="product-detail--paragraph">
               <span className="product-detail--key">CPU: </span>
@@ -165,7 +165,7 @@ const ProductDetails = ({ onAddToCart }) => {
               value={storageCode}
               onChange={setStorageCode}
             />
-            <Button type="button" onClick={onClickAddToCart}>
+            <Button type="button" onClick={onClickAddToCart} disabled={!price}>
               Add to cart
             </Button>
           </form>

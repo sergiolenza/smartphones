@@ -87,13 +87,13 @@ describe('ProductCard component', () => {
     const price = await screen.findByText(`${mockProduct.price} €`);
     expect(price).toBeInTheDocument();
   });
-  it('does render unavailable if product does not have price', async () => {
-    const unavailableProduct = {
+  it('does render not available if product does not have price', async () => {
+    const notAvailableProduct = {
       ...mockProduct,
       price: 0,
     };
-    render(<ProductCard product={unavailableProduct} />);
-    const unavailable = await screen.findByText('unavailable');
-    expect(unavailable).toBeInTheDocument();
+    render(<ProductCard product={notAvailableProduct} />);
+    const notAvailable = await screen.findByText('Not available');
+    expect(notAvailable).toBeInTheDocument();
   });
 });
