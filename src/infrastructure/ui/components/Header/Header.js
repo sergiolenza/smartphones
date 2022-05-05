@@ -8,7 +8,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
   background-color: #132337;
   color: white;
   .header--title-and-breadcrumbs {

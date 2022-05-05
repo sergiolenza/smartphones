@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SearchBar = styled.div`
-  padding: 1rem 0;
   display: flex;
   justify-content: flex-end;
 `;
 
 const Input = styled.input`
   outline: none;
-  padding: 7px;
-  border-radius: 6px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 4px;
   font-size: 16px;
   background: #fbfbfb;
   border: 2px solid #132337;

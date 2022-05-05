@@ -9,7 +9,10 @@ import LoadingPlaceholder from '../../components/LoadingPlaceholder/LoadingPlace
 import ErrorPlaceholder from '../../components/ErrorPlaceholder/ErrorPlaceholder';
 
 const GoBack = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  height: 40px;
+  display: flex;
+  align-items: center;
   .goback--link {
     color: #595959;
     text-decoration: none;
@@ -22,7 +25,7 @@ const ProductDetail = styled.section`
   margin-left: auto;
   margin-right: auto;
   background-color: white;
-  padding: 2rem;
+  padding: 1rem;
   .product-detail--paragraph {
     margin-bottom: 8px;
   }
@@ -92,7 +95,7 @@ const ProductDetails = ({ onAddToCart }) => {
     <>
       <GoBack>
         <Link className="goback--link" to="/">
-          ← Products list
+          ← Products
         </Link>
       </GoBack>
       <ProductDetail role="article" aria-label="product-details">

@@ -30,7 +30,7 @@ const queryClient = new QueryClient({
 const Container = styled.div`
   flex: 1;
   overflow: auto;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 const App = () => {

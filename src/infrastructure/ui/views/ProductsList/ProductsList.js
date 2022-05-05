@@ -20,6 +20,12 @@ const ProductsListContainer = styled.section`
   flex: 1;
   height: 100%;
   flex-direction: column;
+  .products-list--results-and-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
   .products-list--list {
     display: grid;
     grid-template-columns: repeat(
@@ -65,9 +71,12 @@ const ProductsList = () => {
 
   return (
     <ProductsListContainer role="article" aria-label="products-list">
-      <InputSearch onChange={debouncedChangeHandler} />
+      <div className="products-list--results-and-search">
+        {filteredProducts.length} results
+        <InputSearch onChange={debouncedChangeHandler} />
+      </div>
       {filteredProducts.length === 0 ? (
-        <EmptyPlaceholder text="No products to display" />
+        <EmptyPlaceholder text="We cannot find any products matching the search criteria you have chosen." />
       ) : (
         <ul className="products-list--list">
           {filteredProducts.map((product) => (
