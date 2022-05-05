@@ -21,7 +21,7 @@ const Placeholder = styled.section`
     margin: 1rem 0;
   }
   .placeholder--secondary-text {
-    color: #797979;
+    color: #595959;
   }
 `;
 
